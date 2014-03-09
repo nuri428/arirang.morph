@@ -291,7 +291,7 @@ public class Tagger {
 		occurrences = new Trie(true);
 		
 		try {
-			
+			System.out.println("dic : "  + KoreanEnv.getInstance().getValue(tagDicLoc));
 			List<String> strs = FileUtil.readLines(KoreanEnv.getInstance().getValue(tagDicLoc), "UTF-8");
 			
 			for(String str : strs) {
@@ -311,6 +311,7 @@ public class Tagger {
 			}			
 			
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw new MorphException("Fail to read the tagger dictionary.("+tagDicLoc+")\n"+e.getMessage());
 		}
 	}

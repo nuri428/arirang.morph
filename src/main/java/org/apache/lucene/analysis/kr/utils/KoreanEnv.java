@@ -47,7 +47,7 @@ public class KoreanEnv {
 		
 	public static final String FILE_CJ = "cj.dic";
 	
-	public static final String FILE_KOREAN_PROPERTY = "korean.properties";
+	public static final String FILE_KOREAN_PROPERTY = "org/apache/lucene/analysis/kr/korean.properties";
 	
 	private Properties defaults = null;
 
@@ -122,6 +122,7 @@ public class KoreanEnv {
 			byte[] in = FileUtil.readByteFromCurrentJar(FILE_KOREAN_PROPERTY);
 			properties.load(new ByteArrayInputStream(in));
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw new MorphException("Failure while trying to load properties file " + file.getPath(), e);
 		}
 		return properties;
