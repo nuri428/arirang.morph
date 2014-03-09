@@ -29,7 +29,7 @@ import org.apache.lucene.analysis.kr.morph.WordEntry;
 public class DictionaryUtil {
 	
 	//private static Trie<String,WordEntry> dictionary;
-	private static TSTree<String,WordEntry> dic;
+	private static TSTree dic;
 	
 	private static HashMap josas;
 	
@@ -49,7 +49,7 @@ public class DictionaryUtil {
 	public synchronized static void loadDictionary() throws MorphException {
 		
 //		dictionary = new Trie<String, WordEntry>(true);
-		dic = new TSTree<String, WordEntry>();
+		dic = new TSTree();
 		List<String> strList = null;
 		List<String> compounds = null;
 		try {
@@ -70,7 +70,7 @@ public class DictionaryUtil {
 			if(infos[1].length()==6) infos[1] = infos[1].substring(0,5)+"000"+infos[1].substring(5);
 			
 			WordEntry entry = new WordEntry(infos[0].trim(),infos[1].trim().toCharArray());
-			dictionary.add(entry.getWord(), entry);
+			dic.put(entry.getWord(), entry);
 		}
 		
 		for(String compound: compounds) {		
@@ -78,20 +78,20 @@ public class DictionaryUtil {
 			if(infos.length!=2) continue;
 			WordEntry entry = new WordEntry(infos[0].trim(),"20000000X".toCharArray());
 			entry.setCompounds(compoundArrayToList(infos[1], StringUtil.split(infos[1],",")));
-			dictionary.add(entry.getWord(), entry);
+			dic.put(entry.getWord(), entry);
 		}
 	}
 	
 	public static Iterator findWithPrefix(String prefix) throws MorphException {
-		if(dictionary==null) loadDictionary();
-		return dictionary.getPrefixedBy(prefix);
+		if(dic==null) loadDictionary();
+		return dic.prefixMatch(prefix).iterator();
 	}
 
 	public static WordEntry getWord(String key) throws MorphException {		
-		if(dictionary==null) loadDictionary();
+		if(dic==null) loadDictionary();
 		if(key.length()==0) return null;
 		
-		return (WordEntry)dictionary.get(key);
+		return (WordEntry)dic.get(key);
 	}
 	
 	public static WordEntry getWordExceptVerb(String key) throws MorphException {		

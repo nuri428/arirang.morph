@@ -1,7 +1,6 @@
 package org.apache.lucene.analysis.kr;
 
 import java.io.File;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
