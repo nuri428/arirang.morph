@@ -116,7 +116,7 @@ public class SyllableUtil {
 	
 		try{
 			Syllables = new ArrayList<char[]>();
-
+			System.out.println("syllable dic  : "+KoreanEnv.getInstance().getValue(KoreanEnv.FILE_SYLLABLE_FEATURE));
 			List<String> line = FileUtil.readLines(KoreanEnv.getInstance().getValue(KoreanEnv.FILE_SYLLABLE_FEATURE),"UTF-8");	
 			for(int i=0;i<line.size();i++) {				
 				if(i!=0)

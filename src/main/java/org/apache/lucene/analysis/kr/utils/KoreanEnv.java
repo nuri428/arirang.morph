@@ -47,7 +47,7 @@ public class KoreanEnv {
 		
 	public static final String FILE_CJ = "cj.dic";
 	
-	public static final String FILE_KOREAN_PROPERTY = "org/apache/lucene/analysis/kr/korean.properties";
+	public static final String FILE_KOREAN_PROPERTY = "korean.properties";
 	
 	private Properties defaults = null;
 
