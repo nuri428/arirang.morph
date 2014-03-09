@@ -28,7 +28,8 @@ import org.apache.lucene.analysis.kr.morph.WordEntry;
 
 public class DictionaryUtil {
 	
-	private static Trie<String,WordEntry> dictionary;
+	//private static Trie<String,WordEntry> dictionary;
+	private static TSTree<String,WordEntry> dic;
 	
 	private static HashMap josas;
 	
@@ -47,7 +48,8 @@ public class DictionaryUtil {
 	 */
 	public synchronized static void loadDictionary() throws MorphException {
 		
-		dictionary = new Trie<String, WordEntry>(true);
+//		dictionary = new Trie<String, WordEntry>(true);
+		dic = new TSTree<String, WordEntry>();
 		List<String> strList = null;
 		List<String> compounds = null;
 		try {
